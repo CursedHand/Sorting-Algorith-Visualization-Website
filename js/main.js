@@ -34,6 +34,15 @@ function setUp(givenList, length)
     }
 }
 
+function getOrder(length) {
+    var b = [];
+    for (var x = 0; x < length; x++) {
+        b.push(x);
+    }
+    return b;
+}
+
+
 function pause() {
     animate = false;
 }
@@ -43,7 +52,6 @@ function play() {
 }
 
 function reset() {
-    //animate = false;
     numList = [...origList];
     document.getElementById("animation").innerText = "";
     setUp(origList, length);
@@ -76,6 +84,10 @@ function startSort(inpname) {
         frameId = window.requestAnimationFrame(bubbleSort);
     } else if (inpname === "selectionSort") {
         frameId = window.requestAnimationFrame(selectionSort);
+    } else if (inpname === "insertionSort") {
+        frameId = window.requestAnimationFrame(function() {
+            insertionSort(1);
+        });
     }
 
 }
@@ -111,8 +123,6 @@ function bubbleSort() {
         frameId = window.requestAnimationFrame(bubbleSort);
     }   
 }
-
-
 function selectionSort() {
     if (animate === true) {
         var minValue = length+1;
@@ -150,9 +160,46 @@ function selectionSort() {
     }   
 }
 
+function removeItemOnce(arr, value) { //removes specific item from array
+    var index = arr.indexOf(value);
+    if (index > -1) {
+      arr.splice(index, 1);
+    }
+    return arr;
+  }
+
+function insertionSort(item) {
+    if (animate === true) {
+        if (!(item === length)) {
+            if (item < numList.length) {
+                var key = numList[item];
+                for (var x = 0; x < item; x++) {
+                    if (numList[x] > key) {
+                        removeItemOnce(numList, key);
+                        numList.splice(x, 0, key);
+                        document.getElementById("animation").innerText = "";
+                        setUp(numList, length);    
+                        break;
+                    }
+                }
+                item += 1;
+                frameId = window.requestAnimationFrame(function() {
+                    insertionSort(item)
+                });   
+            }
+        } else {
+            console.log("Insertion Sort Done")
+        }
+    } else {
+        frameId = window.requestAnimationFrame(function() {
+            insertionSort(item)
+        });
+    }
+    
+}
 
 
-
+  
 
 var frameId;
 var animate = true;
@@ -164,7 +211,7 @@ var numList = uniqueNumList(length);
 
 const origList = [...numList];
 var bars = setUp(numList, length);
-const sorts = ["selectionSort","bubbleSort"];
+const sorts = ["selectionSort","bubbleSort", "insertionSort"];
 
 var selectSorted = 0;
 var selectSortedList = [];
