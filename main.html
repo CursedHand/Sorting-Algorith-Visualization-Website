@@ -27,9 +27,13 @@
             </div>
 
             <div id="controls">
-                <button type="button" onclick="play()">Play</button>
-                <button type="button" onclick="pause()">Pause</button>
-                <button type="button" onclick="reset()">Reset</button>
+                <form id="lengthForm"></form>
+                    <button type="button" onclick="play()">Play</button>
+                    <button type="button" onclick="pause()">Pause</button>
+                    <button type="button" onclick="reset()">Reset</button>
+                    <input type="text" id="lengthInput"></input>
+                    <button type="button" id="submitLength" onclick="changeLength()">Submit Length</button>
+                </form>
             </div>
 
 

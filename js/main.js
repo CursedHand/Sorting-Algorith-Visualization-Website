@@ -65,6 +65,34 @@ function reset() {
     }
 }
 
+function changeLength() {
+    animate = true;
+    length = parseInt(document.getElementById("lengthInput").value);
+    //if (length > 1000) {
+    //    length = 1000;
+    //}
+    console.log(length);
+
+    //const length = 750;
+    width = document.getElementById("animation").clientWidth;
+    height = document.getElementById("animation").clientHeight;
+
+    numList = uniqueNumList(length);
+
+    origList = [...numList];
+    bars = setUp(numList, length);
+    sorts = ["selectionSort","bubbleSort", "insertionSort"];
+
+    selectSorted = 0;
+    selectSortedList = [];
+    unlock();
+    reset();
+
+
+}
+
+
+
 function unlock() {
     for (var x = 0; x < sorts.length; x++) {
         document.getElementById(sorts[x]).disabled = false;
@@ -203,15 +231,21 @@ function insertionSort(item) {
 
 var frameId;
 var animate = true;
-const length = 750;
-const width = document.getElementById("animation").clientWidth;
-const height = document.getElementById("animation").clientHeight;
+var length = Math.floor(parseFloat(window.getComputedStyle(document.getElementById("animation")).width)/2.66);
+if (length > 750) {
+    length = 750;
+}
+console.log(length);
+
+//const length = 750;
+var width = document.getElementById("animation").clientWidth;
+var height = document.getElementById("animation").clientHeight;
 
 var numList = uniqueNumList(length);
 
-const origList = [...numList];
+var origList = [...numList];
 var bars = setUp(numList, length);
-const sorts = ["selectionSort","bubbleSort", "insertionSort"];
+var sorts = ["selectionSort","bubbleSort", "insertionSort"];
 
 var selectSorted = 0;
 var selectSortedList = [];

@@ -1,8 +1,8 @@
 # Sorting-Algorith-Visualization-Website
 
 <h1>Features</h1>
-<p>		Bubble Sort, Selection Sort, Insertion Sort</p>
-<p>		Play, Pause, and Reset Buttons</p>
+<p>Bubble Sort, Selection Sort, Insertion Sort</p>
+<p>Play, Pause, and Reset Buttons</p>
 
 ![image](https://user-images.githubusercontent.com/87908317/159593178-a7f74d8e-b76e-4874-9f0e-ec908f726af5.png)
 ![image](https://user-images.githubusercontent.com/87908317/159593119-80985436-b041-45db-a1d6-6f1183cf7f6b.png)
